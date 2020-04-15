@@ -10,6 +10,7 @@ function TopicsNav() {
 
   return (
     <ul className="topicNav">
+      <li>Topics</li>
       {topics.map(({ slug }, i) => {
         return (
           <li key={i}>

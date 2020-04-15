@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as api from '../../utils/api';
 import Comments from '../Comments/Comments';
 import Loading from '../Loading';
-import WriteComment from '../Comments/WriteComment';
+import Voter from '../Voter';
 
 function Article({ article_id }) {
   const [article, setArticle] = useState({});
@@ -24,11 +24,13 @@ function Article({ article_id }) {
           Written by: <strong>{article.author}</strong> on{' '}
           <strong>{article.created_at}</strong>
         </p>
-        <p>
-          Votes: <strong>{article.votes}</strong>
-        </p>
+        Votes:{' '}
+        <Voter
+          type="articles"
+          item_id={article_id}
+          startingVotes={article.votes}
+        />
       </div>
-      <WriteComment article_id={article_id} />
       <Comments article_id={article_id} />
     </div>
   );

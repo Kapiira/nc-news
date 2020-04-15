@@ -3,15 +3,13 @@ import './styles/global.css';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import { Router } from '@reach/router';
-import Home from './components/Home';
 import Articles from './components/Articles/Articles';
 import Topics from './components/Topics/Topics';
 import Article from './components/Articles/Article';
 
 function App() {
   useEffect(() => {
-    localStorage.setItem('username', 'Kapiira');
-    console.log('hej');
+    localStorage.setItem('username', 'jessjelly');
   }, []);
 
   return (
@@ -19,8 +17,7 @@ function App() {
       <Header />
       <Nav />
       <Router>
-        <Home path="/" />
-        <Articles path="/articles" className="mainArticle" />
+        <Articles path="/" className="mainArticle" />
         <Article path="/articles/:article_id" />
         <Topics path="/topics/*" />
       </Router>
