@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import './styles/global.css';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import { Router } from '@reach/router';
+import Home from './components/Home';
+import Articles from './components/Articles/Articles';
+import Topics from './components/Topics/Topics';
+import Article from './components/Articles/Article';
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem('username', 'Kapiira');
+    console.log('hej');
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Nav />
+      <Router>
+        <Home path="/" />
+        <Articles path="/articles" className="mainArticle" />
+        <Article path="/articles/:article_id" />
+        <Topics path="/topics/*" />
+      </Router>
     </div>
   );
 }
