@@ -17,13 +17,17 @@ textarea {
   box-sizing: border-box;
 }
 
+.invalidTextarea {
+  border: 2px solid red;
+}
+
 header {
   text-align: center;
   padding: 20px;
   font-size: 3em;
   letter-spacing: 2px;
   font-weight: bold;
-  background: snow;
+  background: red;
 }
 
 header a {
@@ -211,6 +215,8 @@ select {
 
 .voter button:disabled {
   color: grey;
+  opacity: 0.5;
+  cursor: auto;
 }
 
 .commentButton {
@@ -229,6 +235,11 @@ select {
 .commentButton:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.commentButton:disabled {
+  opacity: 0.2;
+  cursor: auto;
 }
 
 .bg-red {
@@ -286,7 +297,9 @@ select {
   .article {
     width: calc(100% - 20px);
   }
+}
 
+@media only screen and (max-width: 500px) {
   .smaller-right {
     padding: 5px;
     width: 100%;
