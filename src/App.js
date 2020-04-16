@@ -7,10 +7,11 @@ import Articles from './components/Articles/Articles';
 import Topics from './components/Topics/Topics';
 import Article from './components/Articles/Article';
 import { UserContext } from './store/user';
+import Errors from './components/Errors';
 
 function App() {
   return (
-    <UserContext.Provider value="jessjelly">
+    <UserContext.Provider value="tickle122">
       <div className="App">
         <Header />
         <Nav />
@@ -18,6 +19,7 @@ function App() {
           <Articles path="/" className="mainArticle" />
           <Article path="/articles/:article_id" />
           <Topics path="/topics/*" />
+          <Errors default status={404} msg="Page Not Found" />
         </Router>
       </div>
     </UserContext.Provider>

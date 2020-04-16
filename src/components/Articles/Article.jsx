@@ -3,18 +3,32 @@ import * as api from '../../utils/api';
 import Comments from '../Comments/Comments';
 import Loading from '../Loading';
 import Voter from '../Voter';
+import Errors from '../Errors';
 
 function Article({ article_id }) {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [err, setErr] = useState(null);
   useEffect(() => {
     setIsLoading(true);
-    api.getArticle(article_id).then((newArticle) => {
-      setArticle(newArticle);
-      setIsLoading(false);
-    });
+    api
+      .getArticle(article_id)
+      .then((newArticle) => {
+        setArticle(newArticle);
+        setIsLoading(false);
+        setErr(null);
+      })
+      .catch((err) => {
+        const { data, status } = err.response;
+        setErr({ status: status, msg: data.message });
+        setIsLoading(false);
+      });
   }, [article_id]);
   if (isLoading) return <Loading />;
+  if (err !== null) {
+    const { status, msg } = err;
+    return <Errors status={status} msg={msg} />;
+  }
   return (
     <div className="article">
       <h1>{article.title}</h1>

@@ -27,7 +27,7 @@ header {
   font-size: 3em;
   letter-spacing: 2px;
   font-weight: bold;
-  background: red;
+  background: snow;
 }
 
 header a {
@@ -173,7 +173,7 @@ select {
 .comments {
   list-style-type: none;
   margin: 0px;
-  padding: 0px;
+  padding: 10px 0px;
 }
 
 .comments li {
@@ -244,6 +244,17 @@ select {
 
 .bg-red {
   background: #c40000;
+}
+
+.invalid {
+  color: red;
+  font-weight: bold;
+  font-size: 0.8em;
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid rgb(255, 0, 0);
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .smaller-right {

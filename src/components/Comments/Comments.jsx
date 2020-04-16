@@ -4,13 +4,14 @@ import Loading from '../Loading';
 import CommentItem from './CommentItem';
 import WriteComment from './WriteComment';
 import { UserContext } from '../../store/user';
+import Errors from '../Errors';
 
 function Comments({ article_id }) {
   const username = useContext(UserContext);
-  console.log(username);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState(null);
 
   const toggleShowComments = () => {
     setShowComments(!showComments);
@@ -19,10 +20,17 @@ function Comments({ article_id }) {
   useEffect(() => {
     if (showComments) {
       setIsLoading(true);
-      api.getComments(article_id).then((newComments) => {
-        setComments(newComments);
-        setIsLoading(false);
-      });
+      api
+        .getComments(article_id)
+        .then((newComments) => {
+          setComments(newComments);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          const { data, status } = err.response;
+          setErr({ status: status, msg: data.message });
+          setIsLoading(false);
+        });
     }
   }, [article_id, showComments]);
 
@@ -32,6 +40,10 @@ function Comments({ article_id }) {
         {isLoading ? <Loading buttonLoading={true} /> : 'Show Comments'}
       </button>
     );
+  }
+  if (err !== null) {
+    const { status, msg } = err;
+    return <Errors status={status} msg={msg} />;
   }
   return (
     <>
