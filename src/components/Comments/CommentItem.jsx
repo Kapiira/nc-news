@@ -29,7 +29,7 @@ function CommentItem({ comment, username, setComments }) {
       {comment.author === username && (
         <button
           disabled={isLoading}
-          className="commentButton bg-red"
+          className="commentButton bg-red smaller-right"
           onClick={() => {
             deleteComment(comment.comment_id);
           }}

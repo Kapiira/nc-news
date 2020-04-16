@@ -174,6 +174,7 @@ select {
 
 .comments li {
   border-top: 1px solid;
+  position: relative;
 }
 
 .sortBy {
@@ -234,6 +235,15 @@ select {
   background: #c40000;
 }
 
+.smaller-right {
+  padding: 3px;
+  width: 140px;
+  font-size: 1em;
+  position: absolute;
+  bottom: -20px;
+  right: 0px;
+}
+
 @media only screen and (max-width: 800px) {
   .topicsMain {
     width: 100%;
@@ -275,5 +285,13 @@ select {
 
   .article {
     width: calc(100% - 20px);
+  }
+
+  .smaller-right {
+    padding: 5px;
+    width: 100%;
+    font-size: 1em;
+    position: relative;
+    bottom: 0px;
   }
 }
