@@ -26,6 +26,11 @@ header {
   background: snow;
 }
 
+header a {
+  color: black;
+  text-decoration: none;
+}
+
 nav {
   grid-area: nav;
   height: 50px;
@@ -46,6 +51,7 @@ nav > ul > li {
 nav a {
   padding: 0px 20px;
   color: white;
+  font-weight: bold;
   text-decoration: none;
   letter-spacing: 1.5px;
   height: 100%;
@@ -76,12 +82,18 @@ select {
   grid-template-columns: 50% 50%;
 }
 
-.articles li {
+.articles li,
+.loader {
   background: snow;
   border-radius: 8px;
   margin: 10px;
   padding: 10px;
   overflow: hidden;
+}
+
+.loader {
+  text-align: center;
+  font-size: 4em;
 }
 
 .articles li h2 {
@@ -253,5 +265,15 @@ select {
     width: calc(100% - 20px);
     display: inline-block;
     box-sizing: border-box;
+  }
+
+  .mainArticle,
+  .article {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .article {
+    width: calc(100% - 20px);
   }
 }

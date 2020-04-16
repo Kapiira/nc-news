@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as api from '../../utils/api';
 import Voter from '../Voter';
+import Loading from '../Loading';
 
 function CommentItem({ comment, username, setComments }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const deleteComment = (comment_id) => {
+    setIsLoading(true);
     api.deleteComment(comment_id).then(() => {
       setComments((prevState) => {
         return prevState.filter((comment) => comment.comment_id !== comment_id);
       });
+      setIsLoading(false);
     });
   };
   return (
@@ -23,12 +28,13 @@ function CommentItem({ comment, username, setComments }) {
       <p>Author: {comment.author}</p>
       {comment.author === username && (
         <button
+          disabled={isLoading}
           className="commentButton bg-red"
           onClick={() => {
             deleteComment(comment.comment_id);
           }}
         >
-          Delete comment
+          {isLoading ? <Loading buttonLoading={true} /> : 'Delete Comment'}
         </button>
       )}
     </li>

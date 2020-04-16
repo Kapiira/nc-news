@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import * as api from '../../utils/api';
 import Loading from '../Loading';
 import CommentItem from './CommentItem';
 import WriteComment from './WriteComment';
-const username = localStorage.getItem('username');
+import { UserContext } from '../../store/user';
 
 function Comments({ article_id }) {
+  const username = useContext(UserContext);
+  console.log(username);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +29,10 @@ function Comments({ article_id }) {
   if (!showComments) {
     return (
       <button className="commentButton" onClick={toggleShowComments}>
-        Show Comments
+        {isLoading ? <Loading buttonLoading={true} /> : 'Show Comments'}
       </button>
     );
   }
-  if (isLoading) return <Loading />;
   return (
     <>
       <h2>Comments</h2>

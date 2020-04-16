@@ -19,7 +19,6 @@ function Articles({ topic_slug, className }) {
       setIsLoading(false);
     });
   }, [topic_slug, sortBy]);
-  if (isLoading) return <h1>Loading...</h1>;
   return (
     <div className={className}>
       <SortBy sortBy={sortBy} setSortBy={setSortBy} />
