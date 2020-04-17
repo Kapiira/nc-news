@@ -5,6 +5,7 @@ import CommentItem from './CommentItem';
 import WriteComment from './WriteComment';
 import { UserContext } from '../../store/user';
 import Errors from '../Errors';
+import { dateFormatting } from '../../utils/formatting';
 
 function Comments({ article_id }) {
   const username = useContext(UserContext);
@@ -23,7 +24,8 @@ function Comments({ article_id }) {
       api
         .getComments(article_id)
         .then((newComments) => {
-          setComments(newComments);
+          const formattedComments = dateFormatting(newComments, 'created_at');
+          setComments(formattedComments);
           setIsLoading(false);
         })
         .catch((err) => {

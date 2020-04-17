@@ -4,12 +4,14 @@ import ArticleItem from './ArticleItem';
 import SortBy from '../SortBy';
 import Loading from '../Loading';
 import Errors from '../Errors';
+import { dateFormatting } from '../../utils/formatting';
 
 function Articles({ topic_slug, className }) {
   const [articles, setArticles] = useState([]);
   const [sortBy, setSortBy] = useState('created_at');
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState(null);
+
   useEffect(() => {
     setIsLoading(true);
     const queries = {
@@ -19,7 +21,9 @@ function Articles({ topic_slug, className }) {
     api
       .getArticles(queries)
       .then((data) => {
-        setArticles(data.articles);
+        const articles = dateFormatting(data.articles, 'created_at');
+        console.log(articles);
+        setArticles(articles);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -28,10 +32,12 @@ function Articles({ topic_slug, className }) {
         setIsLoading(false);
       });
   }, [topic_slug, sortBy]);
+
   if (err !== null) {
     const { status, msg } = err;
     return <Errors status={status} msg={msg} />;
   }
+
   return (
     <div className={className}>
       <SortBy sortBy={sortBy} setSortBy={setSortBy} />

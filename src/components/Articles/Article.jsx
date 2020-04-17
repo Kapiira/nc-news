@@ -4,6 +4,7 @@ import Comments from '../Comments/Comments';
 import Loading from '../Loading';
 import Voter from '../Voter';
 import Errors from '../Errors';
+import { dateFormatting } from '../../utils/formatting';
 
 function Article({ article_id }) {
   const [article, setArticle] = useState({});
@@ -14,7 +15,8 @@ function Article({ article_id }) {
     api
       .getArticle(article_id)
       .then((newArticle) => {
-        setArticle(newArticle);
+        const formattedArticle = dateFormatting([newArticle], 'created_at');
+        setArticle(formattedArticle[0]);
         setIsLoading(false);
         setErr(null);
       })
