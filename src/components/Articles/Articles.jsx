@@ -22,7 +22,6 @@ function Articles({ topic_slug, className }) {
       .getArticles(queries)
       .then((data) => {
         const articles = dateFormatting(data.articles, 'created_at');
-        console.log(articles);
         setArticles(articles);
         setIsLoading(false);
       })
