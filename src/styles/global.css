@@ -166,6 +166,10 @@ select {
   display: block;
 }
 
+.topicNav > li > a[aria-current='page'] {
+  font-weight: bold;
+}
+
 .topicsNav a:hover {
   cursor: pointer;
   text-decoration: underline;
