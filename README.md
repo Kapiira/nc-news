@@ -1,15 +1,16 @@
 # NC News
 
-Link to hosted version: https://hannes-be-nc-news.herokuapp.com/api
+Link to hosted version: https://hannes-nc-news.netlify.app/
 
 ---
 
-This is a simple news website where you can read articles, rate them, write comments etc...
+This is a simple news website where you can read articles, rate them, write comments etc built with React using hooks.
 
 ---
 
 ## Setup Instructions
 
+- Minimum Node version required: 13.3
 - `git clone git@github.com:Kapiira/nc-news.git` will download the project to your preferred location on your computer.
 - CD into the projects folder.
 - `npm install` will install all the dependencies that the project needs
